@@ -1,16 +1,60 @@
-# React + Vite
+# AI-First CRM – HCP Module
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a technical implementation of a Healthcare Professional (HCP) Interaction Logger, featuring a dual-interface approach: a structured form input and a conversational AI agent powered by **LangGraph** and **Groq**.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Structured Logging**: Formal input for regulatory compliance.
+- **Conversational AI**: LangGraph orchestrator using `gemma2-9b-it` for tool calling.
+- **5 Core Tools**:
+  1. `Log Interaction`: DB storage + summary.
+  2. `Edit Interaction`: Version tracking for compliance.
+  3. `Schedule Follow-Up`: Intelligent date suggestion.
+  4. `Insights Generator`: Trend analysis from conversation history.
+  5. `Compliance Checker`: Regulatory standard validation.
+- **Premium UI**: Dark mode, glassmorphism, and micro-animations using React + Framer Motion.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React, Redux Toolkit, Lucide Icons, Framer Motion.
+- **Backend**: Python, FastAPI, SQLAlchemy (SQLite).
+- **AI Agent**: LangGraph, Groq SDK.
+- **Styling**: Vanilla CSS with modern tokens.
 
-## Expanding the ESLint configuration
+## 📦 Setup Instructions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Backend
+1. Navigate to `/backend`.
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Set your Groq API Key in environment variables:
+   ```bash
+   set GROQ_API_KEY=your_key_here
+   ```
+4. Run the API:
+   ```bash
+   python main.py
+   ```
+
+### Frontend
+1. Navigate to `/frontend`.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the dev server:
+   ```bash
+   npm run dev
+   ```
+
+## 🏗️ Architecture Overview
+
+The system uses a **Stateful Agent** pattern via LangGraph. 
+1. **User inputs** (Form or Chat) are sent to the FastAPI backend.
+2. The **LangGraph Agent** decides whether to use a tool (like `log_interaction` or `compliance_check`) based on the query.
+3. **Redux** manages the global state of interaction lists and chat history for a seamless, "real-time" feel.
+
+---
+Created by Antigravity AI.
